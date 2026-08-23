@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+pymongo
+numpy
+pandas
+scipy
+matplotlib
+Pillow
+requests
+schedule
+pykrige
+plotly
+streamlit
