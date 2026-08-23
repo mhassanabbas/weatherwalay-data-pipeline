@@ -5,6 +5,10 @@
 
 A weather data engineering pipeline covering spatial interpolation, a FastAPI backend, and interactive map tile generation — built during my internship in the Technology & Development department at WeatherWalay.
 
+**🔗 Live demo: [weatherwalay-data-pipeline.onrender.com](https://weatherwalay-data-pipeline.onrender.com)** — API docs at [`/docs`](https://weatherwalay-data-pipeline.onrender.com/docs)
+
+> ⏳ Hosted on a free-tier server that sleeps after 15 minutes of no visitors. If the link takes ~30–60 seconds to load the first time, that's expected — it's just waking up, not broken. It stays fast after that.
+
 > **Portfolio note:** This public repository excludes WeatherWalay's proprietary dataset, internal credentials, and private infrastructure. All configuration is environment-based (see `.env.example`).
 
 ## Screenshots
