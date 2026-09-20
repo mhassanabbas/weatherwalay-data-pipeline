@@ -1,8 +1,8 @@
 # ═══════════════════════════════════════════════════════
-# Weather map API with timeline animation and interactive comparison UI
+# api.py — SMOOTH TIMELINE ANIMATION & WINDY UI (STABLE)
 # ═══════════════════════════════════════════════════════
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 import pymongo
 import os
 import json
@@ -14,7 +14,7 @@ except ImportError:
     def log_error(*args, **kwargs): pass
     def get_all_errors(): return []
     def get_today_errors(): return []
-MONGO_URL = os.getenv("MONGO_URL", "mongodb://localhost:27017")
+MONGO_URL = "mongodb://localhost:27017"
 DB_NAME   = "weather_db"
 MAPS_DIR  = "maps"
 TILES_DIR = "tiles"
@@ -76,8 +76,16 @@ def get_hours_for_source(source):
 
 @app.get("/")
 def home():
+    # Automatically send visitors straight to the visual dashboard,
+    # picking whichever source is available — no need to type a full
+    # URL by hand (same experience as GeoPulse's map.html).
+    sources = get_all_sources()
+    if sources:
+        return RedirectResponse(url=f"/map/{sources[0]}/avgtemp")
+
     return {
         "message": "Weather Map API - Windy Style, Enhanced",
+        "note": "No data sources found yet — the pipeline may still be generating data.",
         "endpoints": [
             "/sources", "/variables/{source}", "/hours/{source}",
             "/fullmap/{source}/{variable}",
